@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Overview Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="8dp"
+            android:layout_marginBottom="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView android:text="OVERVIEW" android:textStyle="bold"
+                    android:textSize="12sp" android:textColor="?colorPrimary"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+                <include layout="@layout/row_detail" android:id="@+id/row_timestamp" />
+                <include layout="@layout/row_detail" android:id="@+id/row_type" />
+                <include layout="@layout/row_detail" android:id="@+id/row_method" />
+                <include layout="@layout/row_detail" android:id="@+id/row_status" />
+                <include layout="@layout/row_detail" android:id="@+id/row_response_code" />
+                <include layout="@layout/row_detail" android:id="@+id/row_duration" />
+
+                <!-- Timestamps etc. using TextViews directly for simplicity -->
+                <TextView android:id="@+id/text_timestamp"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:textSize="13sp" android:layout_marginTop="8dp"/>
+                <TextView android:id="@+id/text_type"
+                    android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="13sp"/>
+                <TextView android:id="@+id/text_method"
+                    android:layout_width="match_parent" android:layout_height="wrap_content" android:textStyle="bold" android:textSize="14sp"/>
+                <TextView android:id="@+id/text_url"
+                    android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="13sp"/>
+                <TextView android:id="@+id/text_status"
+                    android:layout_width="match_parent" android:layout_height="wrap_content" android:textStyle="bold" android:textSize="13sp"/>
+                <TextView android:id="@+id/text_response_code"
+                    android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="13sp"/>
+                <TextView android:id="@+id/text_duration"
+                    android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="13sp"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- App-to-App Section -->
+        <LinearLayout android:id="@+id/group_apps"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:visibility="gone">
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                app:cardCornerRadius="8dp" android:layout_marginBottom="12dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical" android:padding="16dp">
+                    <TextView android:text="APP-TO-APP" android:textStyle="bold" android:textSize="12sp"
+                        android:textColor="?colorPrimary" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                    <TextView android:text="Source App:" android:textSize="12sp"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8dp"/>
+                    <TextView android:id="@+id/text_source_app" android:textSize="13sp"
+                        android:layout_width="match_parent" android:layout_height="wrap_content"/>
+                    <TextView android:text="Target App:" android:textSize="12sp"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8dp"/>
+                    <TextView android:id="@+id/text_target_app" android:textSize="13sp"
+                        android:layout_width="match_parent" android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+
+        <!-- Error Section -->
+        <LinearLayout android:id="@+id/group_error"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:visibility="gone">
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                app:cardCornerRadius="8dp" android:layout_marginBottom="12dp"
+                app:cardBackgroundColor="#FFEBEE">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical" android:padding="16dp">
+                    <TextView android:text="ERROR" android:textStyle="bold" android:textSize="12sp"
+                        android:textColor="#F44336" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                    <TextView android:id="@+id/text_error"
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:textSize="13sp" android:fontFamily="monospace" android:layout_marginTop="8dp"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+
+        <!-- Request Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            app:cardCornerRadius="8dp" android:layout_marginBottom="12dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="16dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical">
+                    <TextView android:text="REQUEST" android:textStyle="bold" android:textSize="12sp"
+                        android:textColor="?colorPrimary"
+                        android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"/>
+                    <Button android:id="@+id/btn_copy_request" android:text="Copy"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:textSize="11sp" android:paddingHorizontal="8dp"/>
+                </LinearLayout>
+                <TextView android:text="Headers:" android:textStyle="bold" android:textSize="12sp"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="12dp"/>
+                <TextView android:id="@+id/text_request_headers"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:textSize="12sp" android:fontFamily="monospace"
+                    android:background="#F5F5F5" android:padding="8dp" android:layout_marginTop="4dp"/>
+                <TextView android:text="Body:" android:textStyle="bold" android:textSize="12sp"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="12dp"/>
+                <TextView android:id="@+id/text_request_body"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:textSize="12sp" android:fontFamily="monospace"
+                    android:background="#F5F5F5" android:padding="8dp" android:layout_marginTop="4dp"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Response Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            app:cardCornerRadius="8dp" android:layout_marginBottom="12dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="16dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical">
+                    <TextView android:text="RESPONSE" android:textStyle="bold" android:textSize="12sp"
+                        android:textColor="?colorPrimary"
+                        android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"/>
+                    <Button android:id="@+id/btn_copy_response" android:text="Copy"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:textSize="11sp" android:paddingHorizontal="8dp"/>
+                </LinearLayout>
+                <TextView android:text="Headers:" android:textStyle="bold" android:textSize="12sp"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="12dp"/>
+                <TextView android:id="@+id/text_response_headers"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:textSize="12sp" android:fontFamily="monospace"
+                    android:background="#F5F5F5" android:padding="8dp" android:layout_marginTop="4dp"/>
+                <TextView android:text="Body:" android:textStyle="bold" android:textSize="12sp"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="12dp"/>
+                <TextView android:id="@+id/text_response_body"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:textSize="12sp" android:fontFamily="monospace"
+                    android:background="#F5F5F5" android:padding="8dp" android:layout_marginTop="4dp"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
